@@ -30,4 +30,4 @@ jobs:
         server: ${{ secrets.FTP_SERVER }}
         user: ${{ secrets.FTP_USER }}
         password: ${{ secrets.FTP_PASSWORD }}
-        delete: "true"
+        delete: "false"
