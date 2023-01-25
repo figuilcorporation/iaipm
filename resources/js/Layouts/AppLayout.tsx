@@ -72,6 +72,12 @@ export default function AppLayout({
                   >
                     Dashboard
                   </NavLink>
+                  <NavLink
+                    href={route('students.index')}
+                    active={route().current('students.index')}
+                  >
+                    Étudiants
+                  </NavLink>
                 </div>
               </div>
 
@@ -286,6 +292,12 @@ export default function AppLayout({
                 active={route().current('dashboard')}
               >
                 Dashboard
+              </ResponsiveNavLink>
+              <ResponsiveNavLink
+                href={route('students.index')}
+                active={route().current('students.index')}
+              >
+                Étudiants
               </ResponsiveNavLink>
             </div>
 

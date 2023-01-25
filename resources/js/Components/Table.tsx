@@ -1,11 +1,9 @@
-import React, { PropsWithChildren } from 'react';
+import React, { PropsWithChildren, useEffect, useState } from 'react';
 import DataTable from 'react-data-table-component';
-import { useState } from 'react';
-import { useEffect } from 'react';
-import { filterPlainArray } from '../Utils/functions';
+import { filterPlainArray } from '@/Utils/functions';
 import { MdArrowDropDown } from 'react-icons/md';
-import ContentCard from './ContentCard';
-import Empty from './Empty';
+// import ContentCard from '@/Components/ContentCard';
+// import Empty from '@/Components/Empty';
 
 interface Props {
   data: any;
@@ -27,8 +25,8 @@ export default function Table({
   const [filteredData, setFilteredData] = useState(data);
 
   useEffect(() => {
-    const founds = filterPlainArray(data, filters, search);
-    setFilteredData(founds);
+    // const founds = filterPlainArray(data, filters, search);
+    // setFilteredData(founds);
   }, [search]);
 
   useEffect(() => {
@@ -36,15 +34,15 @@ export default function Table({
   }, [data]);
 
   return (
-    <ContentCard disablePadding className="py-4">
+    // <ContentCard disablePadding className="py-4">
       <DataTable
         fixedHeader
         sortIcon={<MdArrowDropDown />}
         pagination
         striped
         highlightOnHover
-        paginationRowsPerPageOptions={[5, 10, 15, 20, 25, 50, 100]}
-        noDataComponent={<Empty title="Pas de donnée à afficher." />}
+        paginationRowsPerPageOptions={[10, 15, 20, 25, 50, 100]}
+        // noDataComponent={<Empty title="Pas de donnée à afficher." />}
         title={
           <div className="border-b pb-3">
             <p className="font-extrabold text-slate-600">{title}</p>
@@ -68,6 +66,7 @@ export default function Table({
         }
         {...rest}
       />
-    </ContentCard>
+    // <div className="">dev</div>
+    //  </ContentCard>
   );
 }

@@ -10,7 +10,7 @@ import PrimaryButton from '@/Components/PrimaryButton';
 import TextInput from '@/Components/TextInput';
 import InputError from '@/Components/InputError';
 import { SelectOption } from '@/types';
-import UseSelect from '@/Components/useSelect';
+import CustomSelect from '@/Components/CustomSelect';
 
 const levels = [
   {
@@ -28,13 +28,13 @@ const levels = [
 ];
 
 export default function Register(props: any) {
-  const [levelId, setLevel_id] = useState<SelectOption>(levels[0]);
+  const [level, setLevel_id] = useState<SelectOption>(levels[0]);
 
   const page = useTypedPage();
   const route = useRoute();
   const form = useForm({
     first_name: '',
-    level_id: 0,
+    level_id: levels[0].value,
     last_name: '',
     username: '',
     email: '',
@@ -45,11 +45,14 @@ export default function Register(props: any) {
   });
 
   useEffect(() => {
-    form.setData('level_id', levelId.value);
-  }, [levelId]);
+    console.log({level});
+    form.setData('level_id', level.value);
+  }, [level]);
 
   function onSubmit(e: React.FormEvent) {
     e.preventDefault();
+    console.log(form.data);
+
     form.post(route('register'), {
       onFinish: () => form.reset('password', 'password_confirmation'),
     });
@@ -100,7 +103,6 @@ export default function Register(props: any) {
             onChange={e => form.setData('username', e.currentTarget.value)}
             required
             autoFocus
-            autoComplete="username"
           />
           <InputError className="mt-2" message={form.errors.username} />
         </div>
@@ -138,12 +140,12 @@ export default function Register(props: any) {
         </div>
 
         <div className="mb-3">
-        <UseSelect
+        <CustomSelect
           label="Niveau"
           required
           selectData={levels}
           errors={form.errors}
-          defaultValue={levelId}
+          defaultValue={level}
           name="level_id"
           onChange={setLevel_id}
         />

@@ -31,6 +31,7 @@ export interface User {
   updated_at: DateTime;
   archived_at: DateTime;
   deleted_at: DateTime;
+  registrations?: Registration[],
 }
 
 export type InertiaSharedProps<T = {}> = T & {
@@ -101,4 +102,20 @@ export interface TeamInvitation {
 export interface SelectOption {
   label: string;
   value: number;
+}
+
+export interface Level {
+    id: number,
+    index: number,
+    name: string,
+    slug: string
+}
+
+export interface Registration {
+    id: number,
+    year: string,
+    level_id: number,
+    studnet_id: number,
+    student: User,
+    level: Level,
 }

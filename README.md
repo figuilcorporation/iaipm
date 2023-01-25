@@ -1,8 +1,8 @@
 <p align="center"><a href="https://schooma.figuil.com" target="_blank"><img src="public/IAIPM/IAIPM.png" width="600" alt="IAI PM"></a></p>
 
-## SchooMa Manager
+## IAIPM Sponsorship App
 
-The official repo for SchooMa Manager Website
+The official GitHub repo for IAIPM Sponsorship App.
 
 ###### Install Composer dependences
 

@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Admin\StudentController;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
@@ -23,6 +24,8 @@ Route::get('/', function () {
         'phpVersion' => PHP_VERSION,
     ]);
 });
+
+Route::get('students/index', [StudentController::class, 'index'])->name('students.index');
 
 Route::middleware([
     'auth:sanctum',

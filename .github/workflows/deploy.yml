@@ -1,0 +1,33 @@
+name: Deploy iaipm.figuil.com
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+  workflow_dispatch:
+
+jobs:
+  deploy-iaipm:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: shivammathur/setup-php@15c43e89cdef867065b0213be354c2841860869e
+      with:
+        php-version: '8.0'
+    - name: Copy .env file
+      run: php -r "file_exists('.env') || copy('.env.example', '.env');"
+    - uses: actions/checkout@v3
+    # - name: Install Node Dependencies
+    #   run: yarn install
+
+    - name: Disabled git certificate verification
+      run: git config http.sslverify false
+    - name: Upload to cpanel via FTP
+      uses: airvzxf/ftp-deployment-action@latest
+      with:
+        server: ${{ secrets.FTP_SERVER }}
+        user: ${{ secrets.FTP_USER }}
+        password: ${{ secrets.FTP_PASSWORD }}
+        delete: "false"

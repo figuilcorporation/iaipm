@@ -40,10 +40,33 @@ export const confirmAction = async (
  * @param  {Object} filters: an object with the filter criteria
  * @return {Array}
  */
-export function filterPlainArray(array: any, filters: any, search: string) {
-    return array.filter((item: any) => {
+export function filterPlainArray(data: any, filters: any, search: string): any  {
+    return data.filter((item: any) => {
         return filters.some((key: any) => {
             return item[key]?.toLowerCase()?.match(search.toLowerCase());
         });
     });
+}
+
+export function capitalize(str: string){
+    return str.split(' ').map(word => word.charAt(0).toUpperCase() + word.substring(1)).join(' ')
+}
+
+export function formatDate(dateToFormat: any, options = {month: 'long', day: '2-digit', year: 'numeric'} ){
+    const newDate = typeof dateToFormat !== 'object' ? new Date(dateToFormat) : dateToFormat;
+    return capitalize(newDate.toLocaleString("fr-FR", options))
+}
+
+export function formatDateWithDayName(dateToFormat: any, options = {weekday: 'long' ,month: '2-digit', day: '2-digit', year: 'numeric'} ){
+    const newDate = typeof dateToFormat !== 'object' ? new Date(dateToFormat) : dateToFormat;
+    return capitalize(newDate.toLocaleString("fr-FR", options))
+}
+
+export function formatDateShorthly(dateToFormat: any, options = {month: '2-digit', day: '2-digit', year: 'numeric'} ){
+    const newDate = typeof dateToFormat !== 'object' ? new Date(dateToFormat) : dateToFormat;
+    return capitalize(newDate.toLocaleString("fr-FR", options))
+}
+
+export function formatNumber(numberToFormat: any, options = {month: 'long', day: '2-digit', year: 'numeric'} ){
+    return numberToFormat.toLocaleString("fr-FR", {month: '2-digit', day: '2-digit', year: 'numeric'});
 }

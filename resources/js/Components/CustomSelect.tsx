@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import Select from "react-select";
 import ReactHtmlParser from "react-html-parser";
 
-export default function UseSelect(props: any) {
+export default function CustomSelect(props: any) {
     const [options, setOptions] = useState([]);
 
     useEffect(() => {
@@ -12,7 +12,7 @@ export default function UseSelect(props: any) {
                   label: item.name + " " + item.first_name,
               }))
             : props.selectData?.map((item: any) => ({
-                  value: item.id,
+                  value: item.id || item.value,
                   label: item.name || item.label,
               }));
         // opts = props.allowSelectAll
