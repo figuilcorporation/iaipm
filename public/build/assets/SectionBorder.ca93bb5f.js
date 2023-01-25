@@ -1,0 +1,1 @@
+import{j as e}from"./app.e07d7c49.js";function s(){return e("div",{className:"hidden sm:block",children:e("div",{className:"py-8",children:e("div",{className:"border-t border-slate-200"})})})}export{s as S};

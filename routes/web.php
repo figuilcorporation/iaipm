@@ -25,7 +25,9 @@ Route::get('/', function () {
     ]);
 });
 
-Route::get('students/index', [StudentController::class, 'index'])->name('students.index');
+Route::middleware(['auth', 'verified', 'role:SuperAdmin|Admin'])->group(function(){
+    Route::get('students/index', [StudentController::class, 'index'])->name('students.index');
+});
 
 Route::middleware([
     'auth:sanctum',

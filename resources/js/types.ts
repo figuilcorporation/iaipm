@@ -34,6 +34,10 @@ export interface User {
   registrations?: Registration[],
 }
 
+export interface Can {
+    [key: string]: boolean;
+}
+
 export type InertiaSharedProps<T = {}> = T & {
   jetstream: {
     canCreateTeams: boolean;
@@ -51,6 +55,7 @@ export type InertiaSharedProps<T = {}> = T & {
     all_teams?: Team[];
     current_team?: Team;
   };
+  can: Can,
   errorBags: any;
   errors: any;
 };

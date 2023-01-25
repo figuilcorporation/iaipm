@@ -1,13 +1,13 @@
 import React, { PropsWithChildren } from 'react';
 // import { IoCreateOutline, IoTrashOutline } from 'react-icons/io5';
 import Table from '@/Components/Table';
-// import { formatDate } from '@/Utils/functions';
+import { formatDate } from '@/Utils/functions';
 import { User } from '@/types';
-import AppLayout from '@/Layouts/AppLayout';
+import CustomLayout from '@/Layouts/CustomLayout';
 
 const columns = [
   {
-    name: 'Élève',
+    name: 'Étudiant',
     selector: (row: User) => row.full_name,
     sortable: true,
   },
@@ -27,14 +27,9 @@ const columns = [
     selector: (row: User) => row.email,
     sortable: true,
   },
-//   {
-//     name: 'Né le',
-//     selector: (row: User) => row.birth_date && formatDate(row.birth_date),
-//     sortable: true,
-//   },
   {
-    name: 'A',
-    selector: (row: User) => row.birthplace,
+    name: 'Phone',
+    selector: (row: User) => row.phone,
     sortable: true,
   },
   // {
@@ -75,7 +70,7 @@ const Index = ({ students }: PropsWithChildren<Props>) => {
   const filters = ['full_name', 'gender'];
 
   return (
-    <AppLayout
+    <CustomLayout
       title="Liste des étudiantss"
       renderHeader={() => (
         <h2 className="font-semibold text-xl text-slate-800 leading-tight">
@@ -84,13 +79,12 @@ const Index = ({ students }: PropsWithChildren<Props>) => {
       )}
     >
       <Table
-        title="Liste des étudiantss"
         searchPlaceholder="Rechercher par le nom, prénom, matricule, sexe"
         data={students}
         columns={columns}
         filters={filters}
       />
-    </AppLayout>
+    </CustomLayout>
   );
 };
 

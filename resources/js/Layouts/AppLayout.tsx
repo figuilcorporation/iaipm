@@ -24,6 +24,7 @@ export default function AppLayout({
 }: PropsWithChildren<Props>) {
   const page = useTypedPage();
   const route = useRoute();
+
   const [showingNavigationDropdown, setShowingNavigationDropdown] =
     useState(false);
 
@@ -72,12 +73,14 @@ export default function AppLayout({
                   >
                     Dashboard
                   </NavLink>
-                  <NavLink
-                    href={route('students.index')}
-                    active={route().current('students.index')}
-                  >
-                    Étudiants
-                  </NavLink>
+                  {page.props.can.access_students && (
+                    <NavLink
+                      href={route('students.index')}
+                      active={route().current('students.index')}
+                    >
+                      Étudiants
+                    </NavLink>
+                  )}
                 </div>
               </div>
 
@@ -293,12 +296,14 @@ export default function AppLayout({
               >
                 Dashboard
               </ResponsiveNavLink>
+              {page.props.can.access_students && (
               <ResponsiveNavLink
                 href={route('students.index')}
                 active={route().current('students.index')}
               >
                 Étudiants
               </ResponsiveNavLink>
+              )}
             </div>
 
             {/* <!-- Responsive Settings Options --> */}
@@ -343,9 +348,7 @@ export default function AppLayout({
 
                 {/* <!-- Authentication --> */}
                 <form method="POST" onSubmit={logout}>
-                  <ResponsiveNavLink as="button">
-                    Log Out
-                  </ResponsiveNavLink>
+                  <ResponsiveNavLink as="button">Log Out</ResponsiveNavLink>
                 </form>
 
                 {/* <!-- Team Management --> */}
