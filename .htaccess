@@ -1,0 +1,11 @@
+Options -MultiViews -Indexes
+AddDefaultCharset UTF-8
+RewriteEngine On
+RewriteBase /
+
+RewriteCond %{REQUEST_URI} !^public
+RewriteRule ^(.*)$ public/$1 [L]
+
+rewritecond %{http_host} ^www.iaipm.figuil.com [nc]
+rewriterule ^(.*)$ https://iaipm.figuil.com/$1 [r=301,nc]
+#Redirect 301 public/_subdomains/iaipm https://iaipm.figuil.com
