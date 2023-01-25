@@ -1,3 +1,4 @@
+<link rel="icon" type="image/png" href="{{ asset('Favicon.png') }}" />
 
 <meta name="theme-color" content="rgb(25 75 125 / 0.9)">
 <meta name="author" content="figuil.com" />
