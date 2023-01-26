@@ -1,3 +1,31 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+
+@layer components {
+    .input {
+        @apply w-full px-2 md:px-3 py-3 leading-tight text-slate-700 placeholder:text-slate-400 rounded-md shadow appearance-none border disabled:bg-slate-200 border-slate-300 focus:border-blue-300 focus:ring-2 focus:ring-blue-300/30
+    }
+    .select {
+        @apply bg-gray-50 border border-gray-300 text-gray-900 rounded-lg focus:border-blue-300 focus:ring-2 focus:ring-blue-300/30 block w-full p-2.5
+    }
+    .btn {
+        @apply px-4 py-2 md:py-2.5 cursor-pointer transition duration-300 ease-in-out
+    }
+    .btn-gradient-blue {
+        @apply px-4 py-2 md:py-2.5  bg-gradient-to-b from-blue-500 to-blue-400 text-white focus:border-blue-100 focus:ring focus:ring-blue-300/75 rounded-md hover:bg-gradient-to-b hover:from-blue-600 hover:to-blue-500 cursor-pointer transition duration-300 ease-in-out disabled:cursor-default disabled:bg-blue-300/50
+    }
+    .btn-gradient-blue-sm {
+        @apply px-2 py-1  bg-gradient-to-b from-blue-500 to-blue-400 text-white focus:border-blue-100 focus:ring focus:ring-blue-300/75 rounded-md hover:bg-gradient-to-b hover:from-blue-600 hover:to-blue-500 cursor-pointer transition duration-300 ease-in-out disabled:cursor-default disabled:bg-blue-300/50
+    }
+    .btn-outline {
+        @apply hover:text-white  px-4 py-1 md:py-2.5 text-blue-500 bg-transparent border border-blue-500 focus:border-blue-100 focus:ring focus:ring-blue-300/75 rounded-md hover:bg-gradient-to-b hover:from-blue-500 hover:to-blue-400 cursor-pointer transition duration-300 ease-in-out
+    }
+    .btn-sm {
+        @apply hover:text-white  px-2 py-1 text-blue-500 bg-transparent border border-blue-500 focus:border-blue-100 focus:ring focus:ring-blue-300/75 rounded-md hover:bg-gradient-to-b hover:from-blue-500 hover:to-blue-400 cursor-pointer transition duration-300 ease-in-out
+    }
+    .btn-outline-sm {
+        @apply hover:text-white  px-2 py-1 text-blue-500 bg-transparent border border-blue-500 focus:border-blue-100 focus:ring focus:ring-blue-300/75 rounded-md hover:bg-gradient-to-b hover:from-blue-500 hover:to-blue-400 cursor-pointer transition duration-300 ease-in-out
+    }
+}

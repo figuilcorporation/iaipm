@@ -39,6 +39,8 @@ class HandleInertiaRequests extends Middleware
             },
             'can' => [
                 'access_students' => Auth::user()?->hasRole(['Admin', 'SuperAdmin']),
+                'allocate_sponsors' => Auth::user()?->hasRole(['Admin', 'SuperAdmin']),
+                'access_sponsorship' => Auth::user()?->hasRole(['Admin', 'SuperAdmin']),
             ],
         ]);
     }

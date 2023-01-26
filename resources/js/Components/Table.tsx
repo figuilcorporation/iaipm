@@ -43,11 +43,6 @@ export default function Table({
         highlightOnHover
         paginationRowsPerPageOptions={[10, 15, 20, 25, 50, 100]}
         noDataComponent={<Empty title="Pas de donnée à afficher." />}
-        title={
-          <div className="border-b pb-3">
-            <p className="font-extrabold text-slate-600">{title}</p>
-          </div>
-        }
         columns={columns}
         data={filteredData}
         subHeader

@@ -49,9 +49,7 @@ export default function AppLayout({
   return (
     <div>
       <Head title={title} />
-
       <Banner />
-
       <div className="min-h-screen bg-slate-100">
         <nav className="bg-white border-b border-slate-100">
           {/* <!-- Primary Navigation Menu --> */}
@@ -79,6 +77,22 @@ export default function AppLayout({
                       active={route().current('students.index')}
                     >
                       Étudiants
+                    </NavLink>
+                  )}
+                  {page.props.can.allocate_sponsors && (
+                    <NavLink
+                      href={route('sponsorship.allocate.choose-level')}
+                      active={route().current('sponsorship.allocate.choose-level')}
+                    >
+                      Répartir les parrains
+                    </NavLink>
+                  )}
+                  {page.props.can.access_sponsorship && (
+                    <NavLink
+                      href={route('sponsorship.consult.choose-level')}
+                      active={route().current('sponsorship.consult.choose-level')}
+                    >
+                      Consulter Les parrains
                     </NavLink>
                   )}
                 </div>
@@ -302,6 +316,22 @@ export default function AppLayout({
                 active={route().current('students.index')}
               >
                 Étudiants
+              </ResponsiveNavLink>
+              )}
+              {page.props.can.allocate_sponsors && (
+              <ResponsiveNavLink
+                href={route('sponsorship.allocate.choose-level')}
+                active={route().current('sponsorship.allocate.choose-level')}
+              >
+                Répartir les parrains
+              </ResponsiveNavLink>
+              )}
+              {page.props.can.access_sponsorship && (
+              <ResponsiveNavLink
+                href={route('sponsorship.consult.choose-level')}
+                active={route().current('sponsorship.consult.choose-level')}
+              >
+                Consulter les parrains
               </ResponsiveNavLink>
               )}
             </div>
