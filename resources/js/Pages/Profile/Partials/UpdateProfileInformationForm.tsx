@@ -18,8 +18,6 @@ interface Props {
 }
 
 export default function UpdateProfileInformationForm({ user }: Props) {
-    console.log({user});
-
   const form = useForm({
     _method: 'PUT',
     first_name: user.first_name,
