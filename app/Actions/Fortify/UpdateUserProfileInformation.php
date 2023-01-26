@@ -23,10 +23,15 @@ class UpdateUserProfileInformation implements UpdatesUserProfileInformation
             'email' => ['required', 'email', 'max:255', Rule::unique('users')->ignore($user->id)],
             'username' => ['required', 'string', 'max:255', Rule::unique('users')->ignore($user->id)],
             'phone' => ['required', 'string', 'max:255', Rule::unique('users')->ignore($user->id)],
+            'interest_ids.*' => ['nullable', 'exists:interest_areas,id'],
         ])->validateWithBag('updateProfileInformation');
 
         if (isset($input['photo'])) {
             $user->updateProfilePhoto($input['photo']);
+        }
+
+        if(isset($input['interest_ids']) && !empty($input['interest_ids'])){
+            $user->interest_areas()->sync($input['interest_ids']);
         }
 
         if (

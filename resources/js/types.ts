@@ -32,10 +32,15 @@ export interface User {
   archived_at: DateTime;
   deleted_at: DateTime;
   registrations?: Registration[],
+  interest_areas?: InterestArea[],
 }
 
 export interface Can {
     [key: string]: boolean;
+}
+
+export interface SelectOptionType {
+    [key: string]: number;
 }
 
 export type InertiaSharedProps<T = {}> = T & {
@@ -58,6 +63,7 @@ export type InertiaSharedProps<T = {}> = T & {
   can: Can,
   errorBags: any;
   errors: any;
+  interestAreas: InterestArea[],
 };
 
 export interface Session {
@@ -114,6 +120,13 @@ export interface Level {
     index: number,
     name: string,
     slug: string
+}
+
+export interface InterestArea {
+    id: number,
+    name: string,
+    slug: string,
+    students: User[],
 }
 
 export interface Registration {

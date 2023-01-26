@@ -21,6 +21,6 @@ class InterestArea extends Model
      */
     public function users(): BelongsToMany
     {
-        return $this->belongsToMany(User::class, 'student_interest_areas', 'interest_area_id', 'student_id');
+        return $this->belongsToMany(User::class, 'student_interest_areas', 'interest_area_id', 'student_id')->withTimestamps();
     }
 }

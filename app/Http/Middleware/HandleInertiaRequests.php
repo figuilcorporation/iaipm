@@ -2,6 +2,7 @@
 
 namespace App\Http\Middleware;
 
+use App\Models\InterestArea;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Inertia\Middleware;
@@ -37,6 +38,7 @@ class HandleInertiaRequests extends Middleware
                     'location' => $request->url(),
                 ]);
             },
+            'interestAreas' => InterestArea::orderBy('name', 'ASC')->get(),
             'can' => [
                 'access_students' => Auth::user()?->hasRole(['Admin', 'SuperAdmin']),
                 'allocate_sponsors' => Auth::user()?->hasRole(['Admin', 'SuperAdmin']),

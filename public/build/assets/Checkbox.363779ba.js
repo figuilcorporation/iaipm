@@ -1,1 +1,0 @@
-import{c as e}from"./index.0579b088.js";import{j as o}from"./app.5809d7a7.js";function a(s){return o("input",{type:"checkbox",...s,className:e("rounded border-slate-300 text-blue-600 shadow-sm focus:border-blue-300 focus:ring focus:ring-blue-200 focus:ring-opacity-50",s.className)})}export{a as C};

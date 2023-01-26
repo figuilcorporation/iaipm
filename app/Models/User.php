@@ -75,6 +75,7 @@ class User extends Authenticatable
     protected $appends = [
         'profile_photo_url',
         'full_name',
+        'interest_areas'
     ];
 
     public function getFullNameAttribute()
@@ -92,13 +93,17 @@ class User extends Authenticatable
         return $this->hasMany(Registration::class, 'student_id');
     }
 
+    public function getInterestAreasAttribute(){
+        return $this->interest_areas()->get();
+    }
+
     /**
      * The users that belong to the InterestArea
      *
      * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
      */
-    public function interests(): BelongsToMany
+    public function interest_areas(): BelongsToMany
     {
-        return $this->belongsToMany(InterestArea::class, 'student_interest_areas', 'student_id', 'interest_area_id');
+        return $this->belongsToMany(InterestArea::class, 'student_interest_areas', 'student_id', 'interest_area_id')->withTimestamps();
     }
 }

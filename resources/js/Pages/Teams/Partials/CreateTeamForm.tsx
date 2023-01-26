@@ -61,7 +61,7 @@ export default function CreateTeamForm() {
         </div>
       </div>
 
-      <div className="col-span-6 sm:col-span-4">
+      <div className="col-span-6 sm:col-span-6">
         <InputLabel htmlFor="name" value="Team Name" />
         <TextInput
           id="name"

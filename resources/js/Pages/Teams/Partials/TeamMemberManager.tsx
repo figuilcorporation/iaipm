@@ -166,7 +166,7 @@ export default function TeamMemberManager({
             </div>
 
             {/* <!-- Member Email --> */}
-            <div className="col-span-6 sm:col-span-4">
+            <div className="col-span-6 sm:col-span-6">
               <InputLabel htmlFor="email" value="Email" />
               <TextInput
                 id="email"

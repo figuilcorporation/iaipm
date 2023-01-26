@@ -71,7 +71,7 @@ export default function UpdateTeamNameForm({ team, permissions }: Props) {
       </div>
 
       {/* <!-- Team Name --> */}
-      <div className="col-span-6 sm:col-span-4">
+      <div className="col-span-6 sm:col-span-6">
         <InputLabel htmlFor="name" value="Team Name" />
 
         <TextInput

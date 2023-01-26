@@ -1,7 +1,7 @@
 import { Inertia } from '@inertiajs/inertia';
 import { useForm, usePage } from '@inertiajs/inertia-react';
 import classNames from 'classnames';
-import React, { useRef, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import useRoute from '@/Hooks/useRoute';
 import ActionMessage from '@/Components/ActionMessage';
 import FormSection from '@/Components/FormSection';
@@ -10,13 +10,16 @@ import InputLabel from '@/Components/InputLabel';
 import PrimaryButton from '@/Components/PrimaryButton';
 import TextInput from '@/Components/TextInput';
 import SecondaryButton from '@/Components/SecondaryButton';
-import { User } from '@/types';
+import { InterestArea, SelectOption, User } from '@/types';
+import CustomSelect from '@/Components/CustomSelect';
 
 interface Props {
   user: User;
 }
 
 export default function UpdateProfileInformationForm({ user }: Props) {
+    console.log({user});
+
   const form = useForm({
     _method: 'PUT',
     first_name: user.first_name,
@@ -24,12 +27,29 @@ export default function UpdateProfileInformationForm({ user }: Props) {
     username: user.username,
     phone: user.phone,
     email: user.email,
+    interest_ids: [0],
     photo: null as File | null,
   });
   const route = useRoute();
   const [photoPreview, setPhotoPreview] = useState<string | null>(null);
   const photoRef = useRef<HTMLInputElement>(null);
   const page = usePage<any>();
+  const defaultInterestIds = user.interest_areas
+    ? user.interest_areas?.map((item: InterestArea) => ({
+        value: item.id,
+        label: item.name,
+      }))
+    : [];
+  const [interest_ids, setInterest_ids] =
+    useState<SelectOption[]>(defaultInterestIds);
+
+  useEffect(() => {
+    interest_ids &&
+      form.setData(
+        'interest_ids',
+        Array.from(interest_ids, (el: SelectOption) => el.value),
+      );
+  }, [interest_ids]);
 
   function updateProfileInformation() {
     form.post(route('user-profile-information.update'), {
@@ -100,7 +120,7 @@ export default function UpdateProfileInformationForm({ user }: Props) {
     >
       {/* <!-- Profile Photo --> */}
       {page.props.jetstream.managesProfilePhotos ? (
-        <div className="col-span-6 sm:col-span-4">
+        <div className="col-span-6 sm:col-span-6">
           {/* <!-- Profile Photo File Input --> */}
           <input
             type="file"
@@ -158,7 +178,7 @@ export default function UpdateProfileInformationForm({ user }: Props) {
       ) : null}
 
       {/* <!-- First Name --> */}
-      <div className="col-span-6 sm:col-span-4">
+      <div className="col-span-6 sm:col-span-6">
         <InputLabel htmlFor="first_name" value="Nom" />
         <TextInput
           id="first_name"
@@ -172,7 +192,7 @@ export default function UpdateProfileInformationForm({ user }: Props) {
       </div>
 
       {/* <!-- Last Name --> */}
-      <div className="col-span-6 sm:col-span-4">
+      <div className="col-span-6 sm:col-span-6">
         <InputLabel htmlFor="last_name" value="Prénom" />
         <TextInput
           id="last_name"
@@ -185,8 +205,8 @@ export default function UpdateProfileInformationForm({ user }: Props) {
         <InputError message={form.errors.last_name} className="mt-2" />
       </div>
 
-       {/* <!-- Username --> */}
-       <div className="col-span-6 sm:col-span-4">
+      {/* <!-- Username --> */}
+      <div className="col-span-6 sm:col-span-6">
         <InputLabel htmlFor="username" value="Nom d'utilisateur" />
         <TextInput
           id="username"
@@ -200,7 +220,7 @@ export default function UpdateProfileInformationForm({ user }: Props) {
       </div>
 
       {/* <!-- Email --> */}
-      <div className="col-span-6 sm:col-span-4">
+      <div className="col-span-6 sm:col-span-6">
         <InputLabel htmlFor="email" value="Email" />
         <TextInput
           id="email"
@@ -210,6 +230,20 @@ export default function UpdateProfileInformationForm({ user }: Props) {
           onChange={e => form.setData('email', e.currentTarget.value)}
         />
         <InputError message={form.errors.email} className="mt-2" />
+      </div>
+
+      <div className="col-span-6 sm:col-span-6">
+        <CustomSelect
+          closeMenuOnSelect={false}
+          label="Centre(s) d'intérêt(s)"
+          isMulti
+          selectData={page.props.interestAreas}
+          placeholder="Centre(s) d'intérêt(s)"
+          errors={form.errors}
+          defaultValue={interest_ids}
+          name="level_ids"
+          onChange={setInterest_ids}
+        />
       </div>
     </FormSection>
   );

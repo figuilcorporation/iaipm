@@ -11,30 +11,17 @@ import TextInput from '@/Components/TextInput';
 import InputError from '@/Components/InputError';
 import { SelectOption } from '@/types';
 import CustomSelect from '@/Components/CustomSelect';
-
-const levels = [
-  {
-    value: 1,
-    label: 'Niveau 1',
-  },
-  {
-    value: 2,
-    label: 'Niveau 2',
-  },
-  {
-    value: 3,
-    label: 'Niveau 3',
-  },
-];
+import { stringify } from 'postcss';
 
 export default function Register(props: any) {
-  const [level, setLevel_id] = useState<SelectOption>(levels[0]);
-
   const page = useTypedPage();
+  const [level, setLevel_id] = useState<SelectOption>({label: props.levels[0].name, value: props.levels[0].id });
+  const [interest_ids, setInterest_ids] = useState<SelectOption[]>([]);
+
   const route = useRoute();
   const form = useForm({
     first_name: '',
-    level_id: levels[0].value,
+    level_id: props.levels[0].id,
     last_name: '',
     username: '',
     email: '',
@@ -42,12 +29,20 @@ export default function Register(props: any) {
     password: '',
     password_confirmation: '',
     terms: false,
+    interest_ids: [0],
   });
 
   useEffect(() => {
-    console.log({level});
     form.setData('level_id', level.value);
   }, [level]);
+
+  useEffect(() => {
+    interest_ids &&
+      form.setData(
+        'interest_ids',
+        Array.from(interest_ids, (el: SelectOption) => el.value),
+      );
+  }, [interest_ids]);
 
   function onSubmit(e: React.FormEvent) {
     e.preventDefault();
@@ -94,7 +89,7 @@ export default function Register(props: any) {
           <InputError className="mt-2" message={form.errors.last_name} />
         </div>
         <div className="mb-3">
-          <InputLabel htmlFor="username">Nom d'utilisateur</InputLabel>
+          <InputLabel htmlFor="username">Nom d'utilisateur <small className="text-red-500">*</small></InputLabel>
           <TextInput
             id="username"
             type="text"
@@ -140,15 +135,29 @@ export default function Register(props: any) {
         </div>
 
         <div className="mb-3">
-        <CustomSelect
-          label="Niveau"
-          required
-          selectData={levels}
-          errors={form.errors}
-          defaultValue={level}
-          name="level_id"
-          onChange={setLevel_id}
-        />
+          <CustomSelect
+            label="Niveau"
+            required
+            selectData={props.levels}
+            errors={form.errors}
+            defaultValue={level}
+            name="level_id"
+            onChange={setLevel_id}
+          />
+        </div>
+
+        <div className="mb-3">
+          <CustomSelect
+            closeMenuOnSelect={false}
+            label="Centre(s) d'intérêt(s)"
+            isMulti
+            selectData={page.props.interestAreas}
+            placeholder="Centre(s) d'intérêt(s)"
+            errors={form.errors}
+            defaultValue={interest_ids}
+            name="level_ids"
+            onChange={setInterest_ids}
+          />
         </div>
 
         <div className="mt-3">

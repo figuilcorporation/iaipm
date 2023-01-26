@@ -121,7 +121,7 @@ export default function APITokenManager({
         )}
       >
         {/* <!-- Token Name --> */}
-        <div className="col-span-6 sm:col-span-4">
+        <div className="col-span-6 sm:col-span-6">
           <InputLabel htmlFor="name">Name</InputLabel>
           <TextInput
             id="name"

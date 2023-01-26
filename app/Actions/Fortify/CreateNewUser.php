@@ -25,6 +25,7 @@ class CreateNewUser implements CreatesNewUsers
         Validator::make($input, [
             'last_name' => ['required', 'string', 'max:255'],
             'level_id' => ['required', 'exists:levels,id'],
+            'interest_ids.*' => ['nullable', 'exists:interest_areas,id'],
             'first_name' => ['nullable', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'username' => ['required', 'string', 'max:255', 'unique:users'],
@@ -32,10 +33,8 @@ class CreateNewUser implements CreatesNewUsers
             'password' => $this->passwordRules(),
             'terms' => Jetstream::hasTermsAndPrivacyPolicyFeature() ? ['accepted', 'required'] : '',
         ])->validate();
-        $level_id = $input['level_id'];
-        unset($input['level_id']);
 
-        return DB::transaction(function () use ($input, $level_id) {
+        return DB::transaction(function () use ($input) {
             return tap(User::create([
                 'last_name' => $input['last_name'],
                 'first_name' => $input['first_name'],
@@ -43,10 +42,13 @@ class CreateNewUser implements CreatesNewUsers
                 'email' => $input['email'],
                 'phone' => $input['phone'],
                 'password' => Hash::make($input['password']),
-            ]), function (User $user) use ($level_id) {
+            ]), function (User $user) use ($input) {
                 $this->createTeam($user);
                 $user->assignRole('Student');
-                $this->createRegistration($user, $level_id);
+                $this->createRegistration($user, $input['level_id']);
+                if(isset($input['interest_ids']) && !empty($input['interest_ids'])){
+                    $user->interest_areas()->sync($input['interest_ids']);
+                }
             });
         });
     }
