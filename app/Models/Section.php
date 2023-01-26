@@ -5,11 +5,11 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Level extends Model
+class Section extends Model
 {
     use HasFactory;
 
     protected $fillable = [
-        'name', 'slug', 'index', 'section_id'
+        'name', 'slug',
     ];
 }
