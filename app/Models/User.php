@@ -93,7 +93,8 @@ class User extends Authenticatable
         return $this->hasMany(Registration::class, 'student_id');
     }
 
-    public function getInterestAreasAttribute(){
+    public function getInterestAreasAttribute()
+    {
         return $this->interest_areas()->get();
     }
 

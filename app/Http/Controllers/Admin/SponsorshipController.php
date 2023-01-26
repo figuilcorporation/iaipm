@@ -12,7 +12,7 @@ class SponsorshipController extends Controller
 {
     public function chooseLevel(){
         return Inertia::render('Sponsorship/ChooseLevel', [
-            'levels' => Level::where('index', '<', 3)->orderBy('index', 'ASC')->get(),
+            'levels' => Level::where('index', '!=', 3)->where('index', '!=', 6)->orderBy('index', 'ASC')->get(),
             'next_route' => 'sponsorship.allocate-sponsors',
         ]);
     }
