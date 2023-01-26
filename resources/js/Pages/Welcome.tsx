@@ -4,6 +4,7 @@ import useRoute from '@/Hooks/useRoute';
 import useTypedPage from '@/Hooks/useTypedPage';
 import { Head } from '@inertiajs/inertia-react';
 import PrimaryButton from '@/Components/PrimaryButton';
+import PrimaryButtonOutline from '@/Components/PrimaryButtonOutline';
 
 interface Props {
   canLogin: boolean;
@@ -38,15 +39,15 @@ export default function Welcome({
             <>
               <InertiaLink
                 href={route('login')}
-                className="text-slate-700 underline"
+                className="text-slate-700"
               >
-                Connexion
+                <PrimaryButtonOutline>Connexion</PrimaryButtonOutline>
               </InertiaLink>
 
               {canRegister ? (
                 <InertiaLink
                   href={route('register')}
-                  className="ml-4 text-slate-700 underline"
+                  className="ml-4 text-slate-700"
                 >
                   <PrimaryButton>Inscription</PrimaryButton>
                 </InertiaLink>

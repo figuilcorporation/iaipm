@@ -6,7 +6,7 @@ type Props = React.DetailedHTMLProps<
   HTMLButtonElement
 >;
 
-export default function PrimaryButton({
+export default function PrimaryButtonOutline({
   children,
   ...props
 }: PropsWithChildren<Props>) {
@@ -14,7 +14,7 @@ export default function PrimaryButton({
     <button
       {...props}
       className={classNames(
-        'inline-flex items-center px-4 py-2 bg-slate-800 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-slate-700 active:bg-slate-900 focus:outline-none focus:border-slate-900 focus:ring focus:ring-slate-300 disabled:opacity-25 transition',
+        'inline-flex items-center px-4 py-2 text-blue-500 bg-transparent border border-blue-500 focus:border-blue-100 focus:ring focus:ring-blue-300/75 rounded-md hover:bg-gradient-to-b hover:from-blue-500 hover:to-blue-400 hover:text-white cursor-pointer transition duration-300 ease-in-out',
         props.className,
       )}
     >
