@@ -26,7 +26,7 @@ class SponsorshipController extends Controller
 
     public function allocateSponsors(Request $request){
         dd($request->all());
-
+        return redirect(status: 302)->route('sponsorship.consult.list-sponsors', ['level' => $request->level]);
     }
 
     public function listSponsors(Request $request){
