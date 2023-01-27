@@ -32,7 +32,9 @@ export interface User {
   archived_at: DateTime;
   deleted_at: DateTime;
   registrations?: Registration[],
+  registration?: Registration,
   interest_areas?: InterestArea[],
+
 }
 
 export interface Can {
@@ -136,4 +138,5 @@ export interface Registration {
     studnet_id: number,
     student: User,
     level: Level,
+    mentor?: User,
 }

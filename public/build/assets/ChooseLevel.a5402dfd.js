@@ -1,0 +1,1 @@
+import{L as t}from"./ListLevels.70bd8660.js";import{j as r,F as i}from"./app.1cc7bd76.js";import"./CustomLayout.417f6352.js";import"./AppLayout.42fa2af9.js";import"./index.0579b088.js";import"./useTypedPage.035c5fb9.js";import"./transition.0dc79da7.js";const c=o=>r(i,{children:r(t,{...o,grid:"grid-cols-2 sm:grid-cols-4",method:"POST"})});export{c as default};

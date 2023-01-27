@@ -11,6 +11,7 @@ interface Props {
   filters: any;
   title?: string;
   searchPlaceholder?: string;
+  withSearch: boolean;
 }
 
 export default function Table({
@@ -19,6 +20,7 @@ export default function Table({
   filters,
   title,
   searchPlaceholder = 'Rechercher...',
+  withSearch = true,
   ...rest
 }: PropsWithChildren<Props>) {
   const [search, setSearch] = useState('');
@@ -45,13 +47,13 @@ export default function Table({
         noDataComponent={<Empty title="Pas de donnée à afficher." />}
         columns={columns}
         data={filteredData}
-        subHeader
-        subHeaderComponent={
+        subHeader={withSearch}
+        subHeaderComponent= {withSearch &&
           data.length > 0 && (
             <input
               type="text"
               placeholder={searchPlaceholder}
-              className="input text-sm py-2 mb-4 shadow-none w-full md:w-1/2 lg:w-2/6"
+              className="input text-sm py-2 my-4 shadow-none w-full md:w-1/2 lg:w-2/6"
               value={search}
               onChange={e => {
                 setSearch(e.target.value);

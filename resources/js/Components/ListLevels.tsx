@@ -13,6 +13,7 @@ interface Props {
   levels: Level[];
   grid?: string;
   method?: string;
+  as?: string;
 }
 
 export default function ListLevels({
@@ -20,6 +21,7 @@ export default function ListLevels({
   levels,
   grid = 'grid-cols-1 sm:grid-cols-2',
   method = 'GET',
+  as = 'button',
 }: PropsWithChildren<Props>) {
   const route = useRoute();
   return (
@@ -45,15 +47,15 @@ export default function ListLevels({
                         </h4>
                         <InertiaLink
                           method={method}
+                          as={as}
                           href={route(next_route, {
                             _query: {
                               level: item.id,
                             },
                           })}
+                          className="btn-gradient-blue"
                         >
-                          <PrimaryButton className="w-auto">
                             Choisir
-                          </PrimaryButton>
                         </InertiaLink>
                       </div>
                     </div>

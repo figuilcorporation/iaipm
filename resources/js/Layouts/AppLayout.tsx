@@ -90,9 +90,9 @@ export default function AppLayout({
                   {page.props.can.access_sponsorship && (
                     <NavLink
                       href={route('sponsorship.consult.choose-level')}
-                      active={route().current('sponsorship.consult.choose-level')}
+                      active={route().current('sponsorship.consult.choose-level') || route().current('sponsorship.consult.list-sponsors')}
                     >
-                      Consulter Les parrains
+                      Parrains & Filleul
                     </NavLink>
                   )}
                 </div>
@@ -329,9 +329,9 @@ export default function AppLayout({
               {page.props.can.access_sponsorship && (
               <ResponsiveNavLink
                 href={route('sponsorship.consult.choose-level')}
-                active={route().current('sponsorship.consult.choose-level')}
+                active={route().current('sponsorship.consult.choose-level') || route().current('sponsorship.consult.list-sponsors')}
               >
-                Consulter les parrains
+                Parrains & Filleul
               </ResponsiveNavLink>
               )}
             </div>
