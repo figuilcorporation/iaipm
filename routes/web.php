@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Admin\SponsorshipController;
 use App\Http\Controllers\Admin\StudentController;
+use App\Http\Controllers\AppController;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
@@ -39,7 +40,6 @@ Route::middleware([
     config('jetstream.auth_session'),
     'verified',
 ])->group(function () {
-    Route::get('/dashboard', function () {
-        return Inertia::render('Dashboard');
-    })->name('dashboard');
+
+    Route::get('/dashboard', [AppController::class, 'dashboard'])->name('dashboard');
 });
