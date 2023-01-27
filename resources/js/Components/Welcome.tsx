@@ -3,7 +3,6 @@ import ApplicationLogo from '@/Components/ApplicationLogo';
 import { User } from '@/types';
 
 export default function Welcome(props: any) {
-  console.log('registration', props.godsons);
 
   return (
     <div>
@@ -69,7 +68,7 @@ export default function Welcome(props: any) {
             </>
           )}
 
-          {props.godsons.length && (
+          {props.godsons.length > 0 && (
             <>
               <h5 className="text-slate-900 mb-3 mt-10 text-2xl font-bold">
                 Vos Filleuls
