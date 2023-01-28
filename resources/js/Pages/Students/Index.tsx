@@ -12,14 +12,9 @@ const columns = [
     sortable: true,
   },
   {
-    name: 'Genre',
-    selector: (row: User) => row.gender,
-    sortable: true,
-  },
-  {
     name: 'Niveau',
     selector: (row: User) =>
-      row.registrations && row.registrations[0]?.level?.name,
+      row.registration && row.registration?.level?.name,
     sortable: true,
   },
   {
@@ -28,7 +23,7 @@ const columns = [
     sortable: true,
   },
   {
-    name: 'Phone',
+    name: 'Téléphone',
     selector: (row: User) => row.phone,
     sortable: true,
   },

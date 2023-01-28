@@ -6,6 +6,7 @@ const ChooseLevel = (props: any) => {
         <>
             <ListLevels
                 {...props}
+                grid='grid-cols-2 sm:grid-cols-4'
                 method="POST"
             />
         </>

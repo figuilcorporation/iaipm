@@ -6,7 +6,7 @@ const ChooseLevelConsult = (props: any) => {
         <>
             <ListLevels
                 {...props}
-                grid='grid-cols-1 sm:grid-cols-3'
+                grid='grid-cols-2 sm:grid-cols-4'
             />
         </>
     );

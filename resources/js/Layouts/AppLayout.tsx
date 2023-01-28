@@ -90,9 +90,9 @@ export default function AppLayout({
                   {page.props.can.access_sponsorship && (
                     <NavLink
                       href={route('sponsorship.consult.choose-level')}
-                      active={route().current('sponsorship.consult.choose-level')}
+                      active={route().current('sponsorship.consult.choose-level') || route().current('sponsorship.consult.list-sponsors')}
                     >
-                      Consulter Les parrains
+                      Parrains & Filleul
                     </NavLink>
                   )}
                 </div>
@@ -112,7 +112,6 @@ export default function AppLayout({
                             className="inline-flex items-center px-3 py-2 border border-transparent text-sm leading-4 font-medium rounded-md text-slate-500 bg-white hover:bg-slate-50 hover:text-slate-700 focus:outline-none focus:bg-slate-50 active:bg-slate-50 transition"
                           >
                             {page.props.user.current_team?.name}
-
                             <svg
                               className="ml-2 -mr-0.5 h-4 w-4"
                               xmlns="http://www.w3.org/2000/svg"
@@ -329,9 +328,9 @@ export default function AppLayout({
               {page.props.can.access_sponsorship && (
               <ResponsiveNavLink
                 href={route('sponsorship.consult.choose-level')}
-                active={route().current('sponsorship.consult.choose-level')}
+                active={route().current('sponsorship.consult.choose-level') || route().current('sponsorship.consult.list-sponsors')}
               >
-                Consulter les parrains
+                Parrains & Filleul
               </ResponsiveNavLink>
               )}
             </div>

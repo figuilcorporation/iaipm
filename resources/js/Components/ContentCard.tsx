@@ -3,7 +3,7 @@ interface Props {
   title?: string;
   bg?: string;
   color?: string;
-  disablePadding: boolean;
+  disablePadding?: boolean;
   className?: string;
 }
 
